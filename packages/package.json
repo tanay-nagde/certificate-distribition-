@@ -1,0 +1,25 @@
+{
+  "name": "packages",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.14.0",
+  "dependencies": {
+    "@hono/zod-validator": "^0.7.2",
+    "cloudinary": "^2.7.0",
+
+    "hono": "^4.9.1",
+    "uuid": "^11.1.0",
+    "zod": "^4.0.17"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250810.0"
+  }
+}
