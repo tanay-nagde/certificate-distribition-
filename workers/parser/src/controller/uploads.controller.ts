@@ -48,9 +48,9 @@ export const uploadCsv = async (c: Context<MyEnv>) => {
       stream.onAbort(() => {
         console.log(`SSE aborted: job ${jobId}`)
       })
-
+      let data;
       for (const row of parsed.data) {
-        // publish each row
+
         await fetch(`${QSTASH_URL}/https://your-worker-url/consumer-endpoint`, {
           method: 'POST',
           headers: {
@@ -62,13 +62,14 @@ export const uploadCsv = async (c: Context<MyEnv>) => {
             template_id: templateId,
             admin_id: adminId,
             TemplateId : templateId,
+            email: row.email,
             row,
           }),
         })
 
         sent++
         await stream.writeSSE({
-          data: JSON.stringify({ progress: sent, total: parsed.data.length }),
+          data: JSON.stringify({ progress: sent, total: parsed.data.length , data: data}),
         })
       }
 
