@@ -18,6 +18,8 @@
     "typescript": "^5.9.2"
   },
   "dependencies": {
-    "hono": "4.9.1"
+    "@upstash/qstash": "^2.8.2",
+    "hono": "4.9.1",
+    "wrangler": "^4.32.0"
   }
 }

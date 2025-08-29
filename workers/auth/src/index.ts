@@ -4,10 +4,22 @@ import { zValidator } from '../../../packages/utils/validation-wrapper'
 import { SignupSchema, LoginSchema } from './schema'
 import type { MyEnv } from '../../../packages/types'
 import { errorHandler } from '../../../packages/middlewares/error'
-import { login, logout, signup } from './controllers/admin.controller';
+import { getCurrentAdmin, login, logout, signup } from './controllers/admin.controller';
 import { auth } from 'hono/utils/basic-auth'
+import { cors } from 'hono/cors';
 
 const app = new Hono<MyEnv>()
+
+//cors
+app.use(
+  '*',
+  cors({
+    origin: 'http://localhost:3000', // 👈 your Next.js app
+    credentials: true,               // 👈 allow cookies
+    allowHeaders: ['Content-Type', 'Authorization'],
+    allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  })
+)
 
 
 // Secret for JWT
@@ -40,6 +52,9 @@ app.post(
 )
 //logout
 app.put('/logout', authMiddleware , logout)
+
+//getme
+app.get('/me', authMiddleware, getCurrentAdmin)
 
   app.onError(errorHandler)
 

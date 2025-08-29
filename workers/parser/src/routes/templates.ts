@@ -1,6 +1,6 @@
 import { Hono } from 'hono';
 import type { MyEnv } from '@packages/types';
-import { createTemplate } from '../controller/templates.controller';
+import { createTemplate, getTemplatesByAdmin } from '../controller/templates.controller';
 import { authMiddleware } from '@packages/middlewares/auth';
 
 const templatesRoutes = new Hono<MyEnv>();
@@ -13,5 +13,6 @@ const templatesRoutes = new Hono<MyEnv>();
 // });
 
 templatesRoutes.post('/create-template', authMiddleware, createTemplate);
+templatesRoutes.get('/my-templates', authMiddleware, getTemplatesByAdmin);
 
 export default templatesRoutes;

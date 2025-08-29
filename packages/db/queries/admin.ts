@@ -2,6 +2,8 @@ import type { D1Database } from '@cloudflare/workers-types'
 import type { Admin } from '@packages/types'
 import { v4 as uuidv4 } from 'uuid'
 
+type AdminWithoutPassword = Omit<Admin, 'password_hash' | 'created_at'>
+
 // Create a new admin (with or without password)
 export async function createAdmin(
   db: D1Database,
@@ -45,11 +47,11 @@ export async function getAdminByEmail(
 export async function getAdminById(
   db: D1Database,
   id: string
-): Promise<Admin | null> {
+): Promise<AdminWithoutPassword | null> {
   const result = await db
     .prepare(`SELECT * FROM admins WHERE id = ?`)
     .bind(id)
-    .first<Admin>()
+    .first<AdminWithoutPassword>()
 
   return result ?? null
 }

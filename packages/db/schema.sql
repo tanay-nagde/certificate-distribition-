@@ -16,7 +16,8 @@ CREATE TABLE IF NOT EXISTS certificate_templates (
   title TEXT NOT NULL,
   slug TEXT UNIQUE NOT NULL,
   background_image_url TEXT NOT NULL,
-  font TEXT DEFAULT 'Poppins',
+  img_height INTEGER NOT NULL,
+  img_width INTEGER NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (admin_id) REFERENCES admins(id) ON DELETE CASCADE
 );
@@ -28,6 +29,8 @@ CREATE TABLE IF NOT EXISTS template_fields (
   field_key TEXT NOT NULL, -- e.g., "name", "date"
   x INTEGER NOT NULL,
   y INTEGER NOT NULL,
+  font TEXT NOT NULL DEFAULT 'Arial',
+  text_align TEXT NOT NULL DEFAULT 'center',
   font_size INTEGER DEFAULT 24,
   color TEXT DEFAULT '#000000',
   FOREIGN KEY (template_id) REFERENCES certificate_templates(id) ON DELETE CASCADE
@@ -54,10 +57,12 @@ CREATE TABLE IF NOT EXISTS certificates (
   template_id TEXT NOT NULL,
   recipient_email TEXT NOT NULL,
   recipient_name TEXT NOT NULL,
-  qr_slug TEXT UNIQUE NOT NULL,
-  pdf_url TEXT,
+  slug TEXT UNIQUE NOT NULL,
+  img_url TEXT UNIQUE NOT NULL,
+  issued_by TEXT, -- added to fix missing FK
   status TEXT DEFAULT 'generated', -- 'pending', 'failed'
   generated_at TIMESTAMP,
+  FOREIGN KEY (issued_by) REFERENCES admins(id) ON DELETE SET NULL,
   FOREIGN KEY (job_id) REFERENCES upload_jobs(id) ON DELETE CASCADE,
   FOREIGN KEY (template_id) REFERENCES certificate_templates(id)
 );

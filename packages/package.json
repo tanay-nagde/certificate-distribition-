@@ -14,8 +14,8 @@
   "dependencies": {
     "@hono/zod-validator": "^0.7.2",
     "cloudinary": "^2.7.0",
-
     "hono": "^4.9.1",
+    "satori": "^0.10.14",
     "uuid": "^11.1.0",
     "zod": "^4.0.17"
   },

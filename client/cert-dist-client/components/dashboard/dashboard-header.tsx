@@ -12,8 +12,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { useUserStore } from "@/stores/user.store"
 
 export function DashboardHeader() {
+
+  const user = useUserStore((state) => state.user)
   return (
     <header className="border-b">
       <div className="flex h-16 items-center px-4 md:px-6">
@@ -34,7 +37,7 @@ export function DashboardHeader() {
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="flex items-center gap-2">
                 <User className="h-5 w-5" />
-                <span className="hidden md:inline-flex">Admin User</span>
+                <span className="hidden md:inline-flex">{user?.name}</span>
                 <ChevronDown className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>

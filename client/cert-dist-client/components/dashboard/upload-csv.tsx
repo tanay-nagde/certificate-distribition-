@@ -2,14 +2,20 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { use, useEffect, useState } from "react"
 import { Upload } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useDashboardStore } from "@/stores/dashboard.strore"
 
 export function UploadCSV() {
   const [file, setFile] = useState<File | null>(null)
   const [isDragging, setIsDragging] = useState(false)
-
+  const setCsvFile = useDashboardStore((state) => (state.setCsvFile))
+  //set file in state when file chanegs
+  useEffect(() => {
+    setCsvFile(file)
+  }, [file, setCsvFile])
+  
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault()
     setIsDragging(true)

@@ -3,7 +3,8 @@
     "baseUrl": ".",
        "paths": {
       "@packages/*": ["./packages/*"],
-      "@auth/*":["./workers/auth/src/*"]
+      "@auth/*":["./workers/auth/src/*"],
+      
     }
   }
 }

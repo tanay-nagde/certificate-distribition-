@@ -7,7 +7,7 @@ export enum oauth_providers{
   CUSTOM = 'custom'
 }
 
-export type Admin = {
+export interface Admin {
   id: string
   name: string
   email: string
@@ -82,6 +82,8 @@ export type MyEnv = {
     DB: D1Database
     JWT: string // secret or jwt
     QSTASH_TOKEN: string;
+    QSTASH_CURRENT_SIGNING_KEY:string;
+    QSTASH_URL: string;
     QSTASH_NEXT_SIGNING_KEY: string;
     CLOUDINARY_API_KEY : string;
     CLOUDINARY_API_SECRET: string;

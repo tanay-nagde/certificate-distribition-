@@ -1,6 +1,7 @@
+import { db } from './../../../../packages/db/client';
 import { apiError } from './../../../../packages/utils/apiError-wrapper';
 import { Context } from "hono"
-import { createAdmin, getAdminByEmail } from "../../../../packages/db/queries/admin"
+import { createAdmin, getAdminByEmail, getAdminById } from "../../../../packages/db/queries/admin"
 import { oauth_providers } from "../../../../packages/types"
 import { hashPassword, verifyPassword } from "../utils/hash"
 import { HTTPException } from 'hono/http-exception';
@@ -51,7 +52,6 @@ export const login = async (c: Context) => {
     setCookie(c, 'token', token, {
       httpOnly: true,
         secure: true,
-        sameSite: 'Strict',
         expires: new Date(Date.now() + 60 * 60 * 24 * 7 * 1000), // 7 days
     })
 
@@ -63,4 +63,19 @@ export const login = async (c: Context) => {
 export const logout = async (c: Context) => {
   deleteCookie(c, 'token')
   return c.json({ success: true  , message: 'Logged out successfully' }, 200)
+}
+export const getCurrentAdmin = async (c: Context) => {
+  const u = c.get('user')
+  const user = await getAdminById(c.env.DB, u.id)
+  if (!user) {
+    throw apiError(401, 'Unauthorized', 'UnauthorizedError')
+  }
+const returnuser = {
+  id: user.id,
+  email: user.email,
+  name: user.name
+}
+
+
+  return c.json({ data:returnuser }, 200)
 }

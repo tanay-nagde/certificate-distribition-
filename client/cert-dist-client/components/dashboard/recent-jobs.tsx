@@ -1,47 +1,35 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
+import { getAllUploadJobs } from "@/apis/parser"
 
-const recentJobs = [
-  {
-    id: "JOB-1234",
-    date: "2025-07-25",
-    template: "Certificate of Completion",
-    status: "completed",
-    certificates: 127,
-  },
-  {
-    id: "JOB-1233",
-    date: "2025-07-24",
-    template: "Certificate of Achievement",
-    status: "completed",
-    certificates: 85,
-  },
-  {
-    id: "JOB-1232",
-    date: "2025-07-23",
-    template: "Certificate of Excellence",
-    status: "failed",
-    certificates: 0,
-  },
-  {
-    id: "JOB-1231",
-    date: "2025-07-22",
-    template: "Certificate of Completion",
-    status: "completed",
-    certificates: 42,
-  },
-  {
-    id: "JOB-1230",
-    date: "2025-07-21",
-    template: "Certificate of Achievement",
-    status: "completed",
-    certificates: 73,
-  },
-]
+type Job = {
+  id: string
+  admin_id: string
+  template_id: string
+  uploaded_at: string
+  status: string
+  total_records: number
+  processed_count: number
+  failed_count: number
+}
 
 export function RecentJobs() {
+  const [recentJobs, setRecentJobs] = useState<Job[]>([])
+
+  useEffect(() => {
+    const fetchRecentJobs = async () => {
+      const data = await getAllUploadJobs()
+      if (data?.jobs?.results) {
+        setRecentJobs(data.jobs.results)
+      }
+    }
+
+    fetchRecentJobs()
+  }, [])
+
   return (
     <div className="overflow-x-auto">
       <Table>
@@ -58,12 +46,14 @@ export function RecentJobs() {
           {recentJobs.map((job) => (
             <TableRow key={job.id}>
               <TableCell className="font-medium">{job.id}</TableCell>
-              <TableCell>{job.date}</TableCell>
-              <TableCell>{job.template}</TableCell>
+              <TableCell>{new Date(job.uploaded_at).toLocaleString()}</TableCell>
+              <TableCell>{job.template_id}</TableCell>
               <TableCell>
-                <Badge variant={job.status === "completed" ? "default" : "destructive"}>{job.status}</Badge>
+                <Badge variant={job.status === "completed" ? "default" : "secondary"}>
+                  {job.status}
+                </Badge>
               </TableCell>
-              <TableCell className="text-right">{job.certificates}</TableCell>
+              <TableCell className="text-right">{job.total_records}</TableCell>
             </TableRow>
           ))}
         </TableBody>

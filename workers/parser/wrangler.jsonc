@@ -3,11 +3,12 @@
   "name": "parser",
   "main": "src/index.ts",
   "compatibility_date": "2025-08-12",
-    "d1_databases": [
+ "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "certificatedb",
-      "database_id": "72078e5c-9463-47c2-9515-8d9be5706503"
+      "database_name": "certificate_db",
+      "database_id": "8dd37749-2e4c-4c9c-9995-dc29962a873d",
+      "experimental_remote": true
     }
   ],
 
