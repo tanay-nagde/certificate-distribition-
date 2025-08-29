@@ -28,6 +28,11 @@ This project enables **organizations, clubs, and institutions** to generate and 
 
 ---
 
+---
+## note 
+- ### the project is 90% completed i am procastinating in stiching up all the apis and adding email service
+---
+
 ## 🛠️ Tech Stack
 
 - **Frontend:** Next.js, Zustand, Fabric.js  
