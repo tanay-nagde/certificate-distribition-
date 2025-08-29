@@ -40,8 +40,18 @@ This project enables **organizations, clubs, and institutions** to generate and 
 
 ## 📸 Screenshots & 🎥 Demo
 
-<video controls src="Recording 2025-08-24 233134.mp4" title="Title"></video>
-<video controls src="cert-gen-test.mp4" title="Title"></video>
+
+
+https://github.com/user-attachments/assets/e20428fd-0aff-4b67-ba3e-535ffe474d74
+
+
+
+https://github.com/user-attachments/assets/f4b9bb89-2536-4a5d-b8b2-b149fbfecce2
+
+
+
+
+
 ---
 
 ## 🧩 Architecture
