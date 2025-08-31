@@ -49,18 +49,6 @@ This project enables **organizations, clubs, and institutions** to generate and 
 
 https://github.com/user-attachments/assets/d8071d94-787b-4c5a-b659-ac91ff85a33e
 
-
-
-https://github.com/user-attachments/assets/e20428fd-0aff-4b67-ba3e-535ffe474d74
-
-
-
-https://github.com/user-attachments/assets/f4b9bb89-2536-4a5d-b8b2-b149fbfecce2
-
-
-
-
-
 ---
 
 ## 🧩 Architecture
