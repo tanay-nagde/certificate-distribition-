@@ -28,6 +28,11 @@ This project enables **organizations, clubs, and institutions** to generate and 
 
 ---
 
+---
+## note 
+- ### the project is 90% completed i am procastinating in stiching up all the apis and adding email service
+---
+
 ## 🛠️ Tech Stack
 
 - **Frontend:** Next.js, Zustand, Fabric.js  
@@ -40,18 +45,24 @@ This project enables **organizations, clubs, and institutions** to generate and 
 
 ## 📸 Screenshots & 🎥 Demo
 
-<video controls src="Recording 2025-08-24 233134.mp4" title="Title"></video>
-c:\Users\Tanay Nagde\Videos\cert-gen-test.mp4
+
+
+https://github.com/user-attachments/assets/e20428fd-0aff-4b67-ba3e-535ffe474d74
+
+
+
+https://github.com/user-attachments/assets/f4b9bb89-2536-4a5d-b8b2-b149fbfecce2
+
+
+
+
+
 ---
 
 ## 🧩 Architecture
 
-```mermaid
-flowchart TD
-    User[User] --> Nextjs[Next.js Frontend]
-    Nextjs --> Editor[Fabric.js Template Editor]
-    Editor --> Worker[Cloudflare Worker + HonoJS]
-    Worker --> QStash[Upstash QStash Queue]
-    QStash --> Gen[Certificate Generation Service]
-    Gen --> Cloudinary[Cloudinary Storage & CDN]
-    Cloudinary --> User
+<img width="835" height="462" alt="image" src="https://github.com/user-attachments/assets/878c1be2-38e3-45f1-a51e-2dccf1d1c1a6" />
+
+<img width="1347" height="690" alt="image" src="https://github.com/user-attachments/assets/cc3bc3b0-54b0-485d-bdc7-e1d5fcec532c" />
+
+
