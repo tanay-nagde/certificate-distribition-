@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
 import { getAllUploadJobs } from "@/apis/parser"
+import Link from "next/link"
 
 type Job = {
   id: string
@@ -45,7 +46,11 @@ export function RecentJobs() {
         <TableBody>
           {recentJobs.map((job) => (
             <TableRow key={job.id}>
-              <TableCell className="font-medium">{job.id}</TableCell>
+              <TableCell className="font-medium">
+                 <Link href={`/jobs/${job.id}`} className="text-primary hover:underline">
+                  {job.id}
+                </Link>
+                </TableCell>
               <TableCell>{new Date(job.uploaded_at).toLocaleString()}</TableCell>
               <TableCell>{job.template_id}</TableCell>
               <TableCell>

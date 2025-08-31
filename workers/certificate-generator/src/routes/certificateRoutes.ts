@@ -1,11 +1,12 @@
 import { Hono } from 'hono';
 // import { verifySignature } from '@upstash/qstash/hono';
-import { generateCertificate } from '../controllers/certificate.controller';
+import { generateCertificate, getCertificateBySlug, getCertificatesByJobId } from '../controllers/certificate.controller';
 import type { MyEnv } from "@packages/types"; // Assuming types are in a central file
-import { exampleWithFont } from '../controllers/test.controller';
+
 
 
 const certificateRoutes = new Hono<MyEnv>();
+
 
 // // Apply Qstash signature verification to all routes in this file
 // certificateRoutes.use('*', verifySignature({
@@ -14,7 +15,10 @@ const certificateRoutes = new Hono<MyEnv>();
 // }));
 
 // // Define the POST route for the generation job
-certificateRoutes.post('/', generateCertificate);
-certificateRoutes.get('/test', exampleWithFont);
+certificateRoutes.post('/generate', generateCertificate);
+
+certificateRoutes.get("/certificates/job/:job_id", getCertificatesByJobId);
+certificateRoutes.get("/certificates/slug/:slug", getCertificateBySlug);
+
 
 export default certificateRoutes;

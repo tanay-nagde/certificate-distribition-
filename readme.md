@@ -41,7 +41,7 @@ This project enables **organizations, clubs, and institutions** to generate and 
 ## 📸 Screenshots & 🎥 Demo
 
 <video controls src="Recording 2025-08-24 233134.mp4" title="Title"></video>
-<video controls src="cert-gen-test.mp4" title="Title"></video>
+c:\Users\Tanay Nagde\Videos\cert-gen-test.mp4
 ---
 
 ## 🧩 Architecture

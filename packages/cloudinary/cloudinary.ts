@@ -45,7 +45,7 @@ interface CloudinaryErrorResponse {
 
 export const uploadFileToCloudinary = async (
   c: Context<MyEnv>,
-  file: File
+  file: File | Blob | Buffer | null | undefined |string
 ): Promise<{ success: true; data: CloudinaryUploadResponse } | { success: false; error: string }> => {
   const cloudName = c.env.CLOUDINARY_CLOUD_NAME;
   const apiKey = c.env.CLOUDINARY_API_KEY;
